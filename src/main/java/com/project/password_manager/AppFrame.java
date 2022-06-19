@@ -9,13 +9,10 @@ import java.io.IOException;
 
 public class AppFrame extends Application {
 
-    private static Stage loginStage;
-
     @Override
     public void start(Stage stage) throws IOException {
-        loginStage = stage;
         FXMLLoader fxmlLoader = new FXMLLoader(AppFrame.class.getResource("FXML/MainPanel.fxml"));
-        Scene scene = new Scene(fxmlLoader.load(), 600, 400);
+        Scene scene = new Scene(fxmlLoader.load());
         stage.setTitle("Password Manager s25256");
         stage.setScene(scene);
         stage.show();

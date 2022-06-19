@@ -1,4 +1,4 @@
-package com.project.password_manager.Utils;
+package com.project.password_manager;
 
 import java.util.ArrayList;
 import java.util.Objects;

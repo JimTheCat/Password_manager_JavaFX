@@ -1,4 +1,4 @@
-package com.project.password_manager.Controllers;
+package com.project.password_manager;
 
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
