@@ -15,6 +15,51 @@ public class Password {
         this.Login = login;
     }
 
+    public void decryptPassword(){
+        this.Password = decrypt(this.Password);
+        this.Login = decrypt(this.Login);
+        this.Category = decrypt(this.Category);
+        this.Name = decrypt(this.Name);
+        this.Page = decrypt(this.Page);
+    }
+
+    private String decrypt(String Combine){
+        StringBuilder password = new StringBuilder();
+        int counter = 1;
+
+        int key = 122 - Combine.charAt(0);
+
+        for (int i = 0; i < Combine.length(); i++){
+            if (counter % 2 == 0){
+                password.append((char) ((Combine.charAt(i) + key) % 94 + 33));
+            }
+            counter += 1;
+        }
+        return password.toString();
+    }
+
+    public void encryptPassword(){
+        this.Password = encrypt(this.Password);
+        this.Login = encrypt(this.Login);
+        this.Category = encrypt(this.Category);
+        this.Name = encrypt(this.Name);
+        this.Page = encrypt(this.Page);
+    }
+
+    private String encrypt(String Combine){
+        StringBuilder hash = new StringBuilder();
+        hash.append(((int) (Math.random() * 94) + 33));
+
+        int key = hash.charAt(0);
+
+        for (int i = 0; i < Combine.length(); i++){
+            hash.append((char) ((Combine.charAt(i) + key) % 94 + 33));
+            hash.append(((int) (Math.random() * 94) + 33));
+        }
+
+        return hash.toString();
+    }
+
     public String getPassword() {
         return Password;
     }

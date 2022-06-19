@@ -12,7 +12,7 @@
    <center>
       <VBox alignment="CENTER" prefHeight="182.0" prefWidth="633.0" BorderPane.alignment="CENTER">
          <children>
-            <Label fx:id="labelText" alignment="CENTER" nodeOrientation="LEFT_TO_RIGHT" prefHeight="35.0" prefWidth="360.0" text="Wprowadz hasło do programu!" textAlignment="CENTER" wrapText="true" VBox.vgrow="NEVER">
+            <Label fx:id="labelText" alignment="CENTER" nodeOrientation="LEFT_TO_RIGHT" prefHeight="35.0" prefWidth="421.0" text="Wprowadz hasło by odszyfrować plik" textAlignment="CENTER" wrapText="true" VBox.vgrow="NEVER">
                <font>
                   <Font name="System Bold" size="24.0" />
                </font>
@@ -25,6 +25,7 @@
                   <Insets bottom="10.0" />
                </VBox.margin>
             </PasswordField>
+            <Label prefHeight="17.0" prefWidth="358.0" />
             <Button fx:id="buttonLogIn" maxHeight="106.0" maxWidth="106.0" mnemonicParsing="false" prefHeight="36.0" prefWidth="106.0" text="Zaloguj się" textAlignment="CENTER" VBox.vgrow="NEVER">
                <font>
                   <Font size="13.0" />

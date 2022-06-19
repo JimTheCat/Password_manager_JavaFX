@@ -31,6 +31,8 @@ public class MainPanelController {
     @FXML
     public TableColumn<Password, String> loginColumn;
 
+    ObservableList<Password> list = FXCollections.observableArrayList();
+
     public void openFile(ActionEvent actionEvent) {
         FileChooser fileChooser = new FileChooser();
 
@@ -43,12 +45,17 @@ public class MainPanelController {
         if (fileToLoad != null) loadFileToTableView(fileToLoad);
     }
 
+    private boolean auth(String password){
+        //TODO: Ogarnac filmik z scenami :3
+        return true;
+    }
+
     private void loadFileToTableView(File fileToLoad) {
         try{
             BufferedReader br = new BufferedReader(new FileReader(fileToLoad));
             String line;
             String[] array;
-            ObservableList<Password> list = FXCollections.observableArrayList();
+            boolean firstLine = true;
             passwordColumn.setCellValueFactory(new PropertyValueFactory<>("Password"));
             nameColumn.setCellValueFactory(new PropertyValueFactory<>("Name"));
             categoryColumn.setCellValueFactory(new PropertyValueFactory<>("Category"));
@@ -56,6 +63,12 @@ public class MainPanelController {
             loginColumn.setCellValueFactory(new PropertyValueFactory<>("Login"));
 
             while ((line = br.readLine()) != null) {
+                if (firstLine){
+                    firstLine = false;
+                    if(auth(line)) continue;
+                    //TODO: Exception reeee nie pamietam xD
+//                    else throw Exception;
+                }
                 array = line.split(" ");
                 list.add(new Password(array[0], array[1], array[2], array[3], array[4]));
             }
