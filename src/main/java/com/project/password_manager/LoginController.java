@@ -5,18 +5,17 @@ import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
-import javafx.scene.control.Alert;
-import javafx.scene.control.Button;
-import javafx.scene.control.Label;
-import javafx.scene.control.PasswordField;
+import javafx.scene.control.*;
 import javafx.stage.FileChooser;
 import javafx.stage.Stage;
 import javafx.stage.StageStyle;
 
 import java.io.*;
+import java.util.Optional;
 
 public class LoginController {
 
+    private boolean isCancel = false;
     private Password passwordFromFile;
     private File fileToLoad;
     private String nameOfFile;
@@ -34,15 +33,17 @@ public class LoginController {
 
     public void filePicker(ActionEvent event) {
         FileChooser fileChooser = new FileChooser();
+        isCancel = false;
 
         fileChooser.getExtensionFilters().add(
-                new FileChooser.ExtensionFilter("Text files (*.txt)", "*.txt")
+                new FileChooser.ExtensionFilter("Pliki txt; (*.txt)", "*.txt")
         );
 
         fileToLoad = fileChooser.showOpenDialog(null);
 
         if (fileToLoad != null) {
             if (fileToLoad.length() == 0) newFile();
+            if (isCancel) return;
             loadPassword();
             nameOfFile = fileToLoad.getName();
             fileStatus.setText(nameOfFile);
@@ -55,7 +56,31 @@ public class LoginController {
         Alert alert = new Alert(Alert.AlertType.CONFIRMATION);
         alert.setTitle("Twoj plik jest pusty");
         alert.setHeaderText("Twoj plik nie zawiera zadnej tresci\nCzy chcesz utworzyc w nim baze hasel?");
-        alert.showAndWait();
+        Optional<ButtonType> result = alert.showAndWait();
+
+        if (result.isEmpty() || result.get() != ButtonType.OK){
+            if(result.get() == ButtonType.CANCEL){
+                isCancel = true;
+            }
+            return;
+        }
+        else {
+            try {
+                Stage createFileStage = new Stage(StageStyle.DECORATED);
+                FXMLLoader loader = new FXMLLoader(getClass().getResource("FXML/CreateFile.fxml"));
+                Parent root = loader.load();
+                CreateFileController createFileController = loader.getController();
+                createFileController.setNameOfFile(fileToLoad);
+
+                Scene scene = new Scene(root);
+                createFileStage.setTitle("Tworze nową bazę s25256");
+                createFileStage.setScene(scene);
+                createFileStage.show();
+                ((Stage)password.getScene().getWindow()).close();
+            } catch (IOException e){
+                e.printStackTrace();
+            }
+        }
     }
 
     private void loadPassword() {

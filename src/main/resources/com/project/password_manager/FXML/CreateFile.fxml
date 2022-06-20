@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.PasswordField?>
+<?import javafx.scene.layout.BorderPane?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.StackPane?>
+<?import javafx.scene.layout.VBox?>
+
+
+<StackPane fx:controller="com.project.password_manager.CreateFileController" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="214.0" prefWidth="297.0" xmlns="http://javafx.com/javafx/18" xmlns:fx="http://javafx.com/fxml/1">
+   <children>
+      <BorderPane prefHeight="200.0" prefWidth="200.0">
+         <center>
+            <VBox alignment="CENTER" prefHeight="431.0" prefWidth="581.0" BorderPane.alignment="CENTER">
+               <children>
+                  <Label fx:id="nameOfFile" />
+                  <HBox alignment="CENTER" prefHeight="49.0" prefWidth="298.0" spacing="50.0">
+                     <children>
+                        <Label text="Hasło:" />
+                        <PasswordField fx:id="firstPassword" promptText="Hasło" />
+                     </children>
+                  </HBox>
+                  <HBox alignment="CENTER" prefHeight="49.0" prefWidth="298.0" spacing="7.0">
+                     <children>
+                        <Label text="Powtórz hasło:" />
+                        <PasswordField fx:id="secondPassword" promptText="Powtórz hasło" />
+                     </children>
+                     <VBox.margin>
+                        <Insets />
+                     </VBox.margin>
+                  </HBox>
+                  <Label fx:id="isSamePasswords" textFill="RED">
+                     <VBox.margin>
+                        <Insets bottom="10.0" />
+                     </VBox.margin>
+                  </Label>
+                  <Button fx:id="createButton" mnemonicParsing="false" onAction="#createData" text="Stwórz baze" />
+               </children>
+            </VBox>
+         </center>
+      </BorderPane>
+   </children>
+</StackPane>

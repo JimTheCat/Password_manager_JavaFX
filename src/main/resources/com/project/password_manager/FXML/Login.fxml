@@ -51,7 +51,7 @@
                <VBox.margin>
                   <Insets bottom="10.0" />
                </VBox.margin></Label>
-            <Button fx:id="buttonLogIn" disable="true" maxHeight="106.0" maxWidth="106.0" mnemonicParsing="false" onAction="#checkPassword" prefHeight="36.0" prefWidth="106.0" text="Zaloguj się" textAlignment="CENTER" VBox.vgrow="NEVER">
+            <Button fx:id="buttonLogIn" disable="true" maxHeight="106.0" maxWidth="106.0" mnemonicParsing="false" onAction="#checkPassword" prefHeight="36.0" prefWidth="106.0" text="Odszyfruj" textAlignment="CENTER" VBox.vgrow="NEVER">
                <font>
                   <Font size="13.0" />
                </font>
