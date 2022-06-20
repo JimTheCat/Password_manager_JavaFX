@@ -5,6 +5,7 @@ import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
+import javafx.scene.control.Alert;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.PasswordField;
@@ -41,6 +42,7 @@ public class LoginController {
         fileToLoad = fileChooser.showOpenDialog(null);
 
         if (fileToLoad != null) {
+            if (fileToLoad.length() == 0) newFile();
             loadPassword();
             nameOfFile = fileToLoad.getName();
             fileStatus.setText(nameOfFile);
@@ -49,10 +51,18 @@ public class LoginController {
         }
     }
 
+    private void newFile(){
+        Alert alert = new Alert(Alert.AlertType.CONFIRMATION);
+        alert.setTitle("Twoj plik jest pusty");
+        alert.setHeaderText("Twoj plik nie zawiera zadnej tresci\nCzy chcesz utworzyc w nim baze hasel?");
+        alert.showAndWait();
+    }
+
     private void loadPassword() {
+
         try {
             passwordFromFile = new Password(new BufferedReader(new FileReader(fileToLoad)).readLine());
-//            passwordFromFile.decryptPassword();
+            //            passwordFromFile.decryptPassword();
         } catch (IOException e){
             e.printStackTrace();
         }
