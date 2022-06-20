@@ -1,11 +1,16 @@
 package com.project.password_manager;
 
 public class Password {
+    private String Text;
     private String Password;
     private String Name;
     private String Category;
     private String Page;
     private String Login;
+
+    public Password(String text){
+        this.Text = text;
+    }
 
     public Password(String password, String nameOfPassword, String nameOfCategory, String page, String login) {
         this.Password = password;
@@ -58,6 +63,10 @@ public class Password {
         }
 
         return hash.toString();
+    }
+
+    public boolean compareTo(String passwordToCompare){
+        return this.Text.equals(passwordToCompare);
     }
 
     public String getPassword() {

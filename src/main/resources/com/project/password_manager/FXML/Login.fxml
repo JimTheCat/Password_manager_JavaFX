@@ -5,6 +5,7 @@
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.control.PasswordField?>
 <?import javafx.scene.layout.BorderPane?>
+<?import javafx.scene.layout.HBox?>
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
@@ -12,21 +13,45 @@
    <center>
       <VBox alignment="CENTER" prefHeight="182.0" prefWidth="633.0" BorderPane.alignment="CENTER">
          <children>
-            <Label fx:id="labelText" alignment="CENTER" nodeOrientation="LEFT_TO_RIGHT" prefHeight="35.0" prefWidth="421.0" text="Wprowadz hasło by odszyfrować plik" textAlignment="CENTER" wrapText="true" VBox.vgrow="NEVER">
+            <HBox alignment="CENTER" prefHeight="100.0" prefWidth="200.0" spacing="40.0">
+               <children>
+                  <Label text="Wybrano plik:">
+                     <opaqueInsets>
+                        <Insets right="20.0" />
+                     </opaqueInsets>
+                     <font>
+                        <Font name="System Bold" size="12.0" />
+                     </font>
+                  </Label>
+                  <Label fx:id="fileStatus" contentDisplay="CENTER" prefHeight="18.0" prefWidth="123.0" text="Nie wybrano" wrapText="true" />
+                  <Button fx:id="chooseFile" mnemonicParsing="false" onAction="#filePicker" prefHeight="48.0" prefWidth="126.0" text="Wybierz lokalizacje pliku" textAlignment="CENTER" wrapText="true">
+                     <opaqueInsets>
+                        <Insets left="20.0" />
+                     </opaqueInsets>
+                  </Button>
+               </children>
+            </HBox>
+            <Label alignment="CENTER" nodeOrientation="LEFT_TO_RIGHT" prefHeight="9.0" prefWidth="434.0" text="Wprowadz hasło by odszyfrować plik" textAlignment="CENTER" wrapText="true" VBox.vgrow="NEVER">
                <font>
-                  <Font name="System Bold" size="24.0" />
+                  <Font name="System Bold" size="21.0" />
                </font>
                <VBox.margin>
                   <Insets bottom="10.0" />
                </VBox.margin>
             </Label>
-            <PasswordField fx:id="password" maxHeight="26.0" maxWidth="360.0" promptText="Hasło" VBox.vgrow="NEVER">
+            <PasswordField fx:id="password" disable="true" maxHeight="26.0" maxWidth="360.0" promptText="Hasło" VBox.vgrow="NEVER">
                <VBox.margin>
                   <Insets bottom="10.0" />
                </VBox.margin>
             </PasswordField>
-            <Label prefHeight="17.0" prefWidth="358.0" />
-            <Button fx:id="buttonLogIn" maxHeight="106.0" maxWidth="106.0" mnemonicParsing="false" prefHeight="36.0" prefWidth="106.0" text="Zaloguj się" textAlignment="CENTER" VBox.vgrow="NEVER">
+            <Label fx:id="isPasswordCorrect" prefHeight="17.0" prefWidth="358.0" textFill="RED">
+               <opaqueInsets>
+                  <Insets />
+               </opaqueInsets>
+               <VBox.margin>
+                  <Insets bottom="10.0" />
+               </VBox.margin></Label>
+            <Button fx:id="buttonLogIn" disable="true" maxHeight="106.0" maxWidth="106.0" mnemonicParsing="false" onAction="#checkPassword" prefHeight="36.0" prefWidth="106.0" text="Zaloguj się" textAlignment="CENTER" VBox.vgrow="NEVER">
                <font>
                   <Font size="13.0" />
                </font>

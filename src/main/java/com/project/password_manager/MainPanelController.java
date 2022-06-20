@@ -4,18 +4,25 @@ import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
+import javafx.fxml.FXMLLoader;
+import javafx.scene.Node;
+import javafx.scene.Scene;
 import javafx.scene.control.MenuItem;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.stage.FileChooser;
+import javafx.stage.Stage;
 
 import java.io.BufferedReader;
 import java.io.File;
 import java.io.FileReader;
+import java.io.IOException;
 
 
 public class MainPanelController {
+
+    public File fileFromLoginPanel;
 
     @FXML
     public MenuItem openFileMenu;
@@ -33,7 +40,11 @@ public class MainPanelController {
 
     ObservableList<Password> list = FXCollections.observableArrayList();
 
-    public void openFile(ActionEvent actionEvent) {
+    public void setFileFromLoginPanel(File fileFromLogin){
+        fileFromLoginPanel = fileFromLogin;
+    }
+
+    public void openFile() {
         FileChooser fileChooser = new FileChooser();
 
         fileChooser.getExtensionFilters().add(
@@ -42,17 +53,33 @@ public class MainPanelController {
 
         File fileToLoad = fileChooser.showOpenDialog(null);
 
-        if (fileToLoad != null) loadFileToTableView(fileToLoad);
+        if (fileToLoad != null) loadFileToTableView();
     }
 
-    private boolean auth(String password){
-        //TODO: Ogarnac filmik z scenami :3
+    private boolean auth(String password, ActionEvent event){
+//        try {
+//            FXMLLoader fxmlLoader = new FXMLLoader();
+//            fxmlLoader.setLocation(getClass().getResource("FXML/Login.fxml"));
+////            LoginController loginController = fxmlLoader.getController();
+////            loginController.passwordToCheck(password);
+//            Scene scene = new Scene(fxmlLoader.load());
+//            Stage stage = new Stage();
+////            Stage stage = (Stage) ((Node)event.getSource()).getScene().getWindow();
+//            stage.setTitle("Logowanie");
+//            stage.setScene(scene);
+//            stage.show();
+//
+//
+//
+//        } catch (IOException e){
+//            e.printStackTrace();
+//        }
         return true;
     }
 
-    private void loadFileToTableView(File fileToLoad) {
+    protected void loadFileToTableView() {
         try{
-            BufferedReader br = new BufferedReader(new FileReader(fileToLoad));
+            BufferedReader br = new BufferedReader(new FileReader(fileFromLoginPanel));
             String line;
             String[] array;
             boolean firstLine = true;
@@ -65,9 +92,9 @@ public class MainPanelController {
             while ((line = br.readLine()) != null) {
                 if (firstLine){
                     firstLine = false;
-                    if(auth(line)) continue;
+//                    if(auth(line, new ActionEvent())) continue;
                     //TODO: Exception reeee nie pamietam xD
-//                    else throw Exception;
+                    continue;
                 }
                 array = line.split(" ");
                 list.add(new Password(array[0], array[1], array[2], array[3], array[4]));

@@ -11,7 +11,7 @@ public class AppFrame extends Application {
 
     @Override
     public void start(Stage stage) throws IOException {
-        FXMLLoader fxmlLoader = new FXMLLoader(AppFrame.class.getResource("FXML/MainPanel.fxml"));
+        FXMLLoader fxmlLoader = new FXMLLoader(AppFrame.class.getResource("FXML/Login.fxml"));
         Scene scene = new Scene(fxmlLoader.load());
         stage.setTitle("Password Manager s25256");
         stage.setScene(scene);
