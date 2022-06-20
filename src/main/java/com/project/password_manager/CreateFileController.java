@@ -23,6 +23,7 @@ public class CreateFileController {
     public void createData(ActionEvent actionEvent) {
         if (firstPassword.getText().equals(secondPassword.getText())){
             isSamePasswords.setText("");
+
         }
         else isSamePasswords.setText("Hasła nie są takie same!");
     }
