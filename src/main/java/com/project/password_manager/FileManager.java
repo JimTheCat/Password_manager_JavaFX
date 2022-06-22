@@ -1,9 +1,12 @@
 package com.project.password_manager;
 
+import javafx.collections.ObservableList;
+
 import java.io.File;
 import java.io.IOException;
 import java.io.PrintWriter;
 import java.nio.charset.StandardCharsets;
+import java.util.ArrayList;
 
 public class FileManager extends File {
 
@@ -21,6 +24,10 @@ public class FileManager extends File {
         } catch (IOException e){
             e.printStackTrace();
         }
+    }
+
+    public void savingCurrentChanges(Password password, String[] categories, ObservableList<Password> listOfPasswords){
+
     }
 
 }
