@@ -88,18 +88,18 @@ public class MainPanelController {
             categoryColumn.setCellValueFactory(new PropertyValueFactory<>("Category"));
             pageColumn.setCellValueFactory(new PropertyValueFactory<>("Page"));
             loginColumn.setCellValueFactory(new PropertyValueFactory<>("Login"));
+            Password passwordFromFile = new Password(br.readLine());
+            String[] arrayOfCategories = br.readLine().split(" ");
+            Password[] categories = new Password[arrayOfCategories.length];
 
+            for (int i = 0; i < categories.length; i++){
+                categories[i] = new Password(arrayOfCategories[i]);
+            }
             while ((line = br.readLine()) != null) {
-                if (firstLine){
-                    firstLine = false;
-//                    if(auth(line, new ActionEvent())) continue;
-                    //TODO: Exception reeee nie pamietam xD
-                    continue;
-                }
                 array = line.split(" ");
                 list.add(new Password(array[0], array[1], array[2], array[3], array[4]));
             }
-
+            if (list.isEmpty()) return;
             table.setItems(list);
 
             br.close();

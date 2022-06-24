@@ -97,7 +97,6 @@ public class LoginController {
     public void checkPassword(ActionEvent event) throws IOException {
         if (passwordFromFile == null) return;
         passwordFromFile.decryptText();
-        //TODO: Odpowiednio wydzielic decrypting oraz zrobić tak żeby nie sypało bledami c:
         if (passwordFromFile.compareTo(password.getText())){
             isPasswordCorrect.setText("");
             Stage primaryStage = new Stage(StageStyle.DECORATED);
