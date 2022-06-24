@@ -28,7 +28,7 @@ public class Password {
         this.Page = decrypt(this.Page);
     }
 
-    private String decrypt(String Combine){
+    public String decrypt(String Combine){
         StringBuilder password = new StringBuilder();
         int counter = 1;
 
@@ -51,7 +51,7 @@ public class Password {
         this.Page = encrypt(this.Page);
     }
 
-    private String encrypt(String Combine){
+    public String encrypt(String Combine){
         StringBuilder hash = new StringBuilder();
         hash.append(((int) (Math.random() * 94) + 33));
 

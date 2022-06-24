@@ -11,6 +11,7 @@ import java.io.File;
 public class CreateFileController {
     @FXML
     public Label nameOfFile;
+    private File fileFromAnotherController;
     @FXML
     public PasswordField firstPassword;
     @FXML
@@ -23,7 +24,9 @@ public class CreateFileController {
     public void createData(ActionEvent actionEvent) {
         if (firstPassword.getText().equals(secondPassword.getText())){
             isSamePasswords.setText("");
-
+            FileManager fileManager = new FileManager(fileFromAnotherController.getPath());
+            Password passwordProgram = new Password(firstPassword.getText());
+            fileManager.createFile(passwordProgram);
         }
         else isSamePasswords.setText("Hasła nie są takie same!");
     }
