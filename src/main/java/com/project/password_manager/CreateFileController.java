@@ -34,4 +34,6 @@ public class CreateFileController {
     protected void setNameOfFile(File file){
         nameOfFile.setText(file.getName());
     }
+
+    protected void setFile (File file) {fileFromAnotherController = file;}
 }

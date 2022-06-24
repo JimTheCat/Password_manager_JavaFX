@@ -21,18 +21,22 @@ public class Password {
     }
 
     public void decryptPassword(){
-        this.Password = decrypt(this.Password);
-        this.Login = decrypt(this.Login);
-        this.Category = decrypt(this.Category);
-        this.Name = decrypt(this.Name);
-        this.Page = decrypt(this.Page);
+        this.Password = decrypting(this.Password);
+        this.Login = decrypting(this.Login);
+        this.Category = decrypting(this.Category);
+        this.Name = decrypting(this.Name);
+        this.Page = decrypting(this.Page);
     }
 
-    public String decrypt(String Combine){
+    public void decryptText(){
+        this.Text = decrypting(this.Text);
+    }
+
+    private String decrypting(String Combine){
         StringBuilder password = new StringBuilder();
         int counter = 1;
 
-        int key = 122 - Combine.charAt(0);
+        int key = 122 - this.Text.charAt(0);
 
         for (int i = 0; i < Combine.length(); i++){
             if (counter % 2 == 0){
@@ -44,22 +48,26 @@ public class Password {
     }
 
     public void encryptPassword(){
-        this.Password = encrypt(this.Password);
-        this.Login = encrypt(this.Login);
-        this.Category = encrypt(this.Category);
-        this.Name = encrypt(this.Name);
-        this.Page = encrypt(this.Page);
+        this.Password = encrypting(this.Password);
+        this.Login = encrypting(this.Login);
+        this.Category = encrypting(this.Category);
+        this.Name = encrypting(this.Name);
+        this.Page = encrypting(this.Page);
     }
 
-    public String encrypt(String Combine){
+    public void encryptText(){
+        this.Text = encrypting(this.Text);
+    }
+
+    private String encrypting(String Combine){
         StringBuilder hash = new StringBuilder();
-        hash.append(((int) (Math.random() * 94) + 33));
+        hash.append((char) ((int) (Math.random() * 94) + 33));
 
         int key = hash.charAt(0);
 
         for (int i = 0; i < Combine.length(); i++){
             hash.append((char) ((Combine.charAt(i) + key) % 94 + 33));
-            hash.append(((int) (Math.random() * 94) + 33));
+            hash.append((char) ((int) (Math.random() * 94) + 33));
         }
 
         return hash.toString();
@@ -107,5 +115,13 @@ public class Password {
 
     public void setLogin(String login) {
         this.Login = login;
+    }
+
+    public String getText() {
+        return Text;
+    }
+
+    public void setText(String text) {
+        Text = text;
     }
 }

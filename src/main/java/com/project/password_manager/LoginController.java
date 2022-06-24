@@ -71,6 +71,7 @@ public class LoginController {
                 Parent root = loader.load();
                 CreateFileController createFileController = loader.getController();
                 createFileController.setNameOfFile(fileToLoad);
+                createFileController.setFile(fileToLoad);
 
                 Scene scene = new Scene(root);
                 createFileStage.setTitle("Tworze nową bazę s25256");
@@ -95,7 +96,8 @@ public class LoginController {
 
     public void checkPassword(ActionEvent event) throws IOException {
         if (passwordFromFile == null) return;
-
+        passwordFromFile.decryptText();
+        //TODO: Odpowiednio wydzielic decrypting oraz zrobić tak żeby nie sypało bledami c:
         if (passwordFromFile.compareTo(password.getText())){
             isPasswordCorrect.setText("");
             Stage primaryStage = new Stage(StageStyle.DECORATED);

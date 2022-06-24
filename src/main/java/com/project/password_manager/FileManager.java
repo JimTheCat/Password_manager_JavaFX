@@ -17,20 +17,29 @@ public class FileManager extends File {
 
     public void createFile(Password password){
         try {
-            this.createNewFile();
-            String passwordToPush = password.encrypt(String.valueOf(password));
+            password.encryptText();
             PrintWriter writer = new PrintWriter(this, StandardCharsets.UTF_8);
-            writer.println(passwordToPush);
+            writer.println(password.getText());
             writer.println(" ");
+            password.decryptText();
+            System.out.println(password.getText());
             writer.close();
         } catch (IOException e){
             e.printStackTrace();
         }
     }
 
-    public void savingCurrentChanges(Password password, String[] categories, ObservableList<Password> listOfPasswords){
+    public void savingCurrentChanges(Password password, Password[] categories, ObservableList<Password> listOfPasswords){
         try {
             PrintWriter writer = new PrintWriter(this, StandardCharsets.UTF_8);
+            password.encryptPassword();
+            for(Password i : categories){
+                i.encryptText();
+            }
+
+            for(Password j : listOfPasswords){
+                j.encryptPassword();
+            }
             writer.println(password);
             writer.println(Arrays.toString(categories));
             writer.println(Arrays.toString(listOfPasswords.toArray()));
