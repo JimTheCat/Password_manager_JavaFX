@@ -36,7 +36,7 @@ public class Password {
         StringBuilder password = new StringBuilder();
         int counter = 1;
 
-        int key = 122 - this.Text.charAt(0);
+        int key = 122 - Combine.charAt(0);
 
         for (int i = 0; i < Combine.length(); i++){
             if (counter % 2 == 0){

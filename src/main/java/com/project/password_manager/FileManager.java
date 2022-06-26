@@ -17,12 +17,9 @@ public class FileManager extends File {
 
     public void createFile(Password password){
         try {
-            password.encryptText();
             PrintWriter writer = new PrintWriter(this, StandardCharsets.UTF_8);
             writer.println(password.getText());
             writer.println(" ");
-            password.decryptText();
-            System.out.println(password.getText());
             writer.close();
         } catch (IOException e){
             e.printStackTrace();
@@ -32,17 +29,19 @@ public class FileManager extends File {
     public void savingCurrentChanges(Password password, Password[] categories, ObservableList<Password> listOfPasswords){
         try {
             PrintWriter writer = new PrintWriter(this, StandardCharsets.UTF_8);
-            password.encryptPassword();
+            writer.println(password.getText());
             for(Password i : categories){
+                if (i == null) continue;
                 i.encryptText();
+                writer.print(i.getText() + " ");
+                i.decryptText();
             }
-
+            writer.println("");
             for(Password j : listOfPasswords){
                 j.encryptPassword();
+                writer.println(j.getPassword() + " " + j.getName() + " " + j.getCategory() + " " + j.getPage() + " " + j.getLogin() + " ");
+                j.decryptPassword();
             }
-            writer.println(password);
-            writer.println(Arrays.toString(categories));
-            writer.println(Arrays.toString(listOfPasswords.toArray()));
             writer.close();
         } catch (IOException e){
             e.printStackTrace();

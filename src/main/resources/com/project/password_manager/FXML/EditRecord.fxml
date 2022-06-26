@@ -10,7 +10,7 @@
 <?import javafx.scene.layout.StackPane?>
 <?import javafx.scene.layout.VBox?>
 
-<StackPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="319.0" prefWidth="346.0" xmlns="http://javafx.com/javafx/18" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.project.password_manager.NewRecordController">
+<StackPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="319.0" prefWidth="346.0" xmlns="http://javafx.com/javafx/18" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.project.password_manager.EditRecordController">
    <children>
       <BorderPane prefHeight="200.0" prefWidth="200.0">
          <center>
@@ -18,19 +18,19 @@
                <children>
                   <HBox alignment="CENTER" prefHeight="44.0" prefWidth="617.0" spacing="100.0">
                      <children>
-                        <Label text="Podaj hasło*: " />
+                        <Label text="Podaj hasło: " />
                         <PasswordField fx:id="passwordLabel" />
                      </children>
                   </HBox>
                   <HBox alignment="CENTER" prefHeight="50.0" prefWidth="609.0" spacing="96.0">
                      <children>
-                        <Label text="Nazwa hasła*: " />
+                        <Label text="Nazwa hasła: " />
                         <TextField fx:id="nameLabel" />
                      </children>
                   </HBox>
                   <HBox alignment="CENTER" prefHeight="46.0" prefWidth="606.0" spacing="83.0">
                      <children>
-                        <Label text="Kategoria hasła*: " />
+                        <Label text="Kategoria hasła: " />
                         <ComboBox fx:id="categoryLabel" prefWidth="150.0" />
                      </children>
                   </HBox>
@@ -46,11 +46,10 @@
                         <TextField fx:id="loginLabel" />
                      </children>
                   </HBox>
-                  <Label fx:id="errorLabel" textFill="RED" />
                   <HBox alignment="CENTER" prefHeight="64.0" prefWidth="346.0" spacing="75.0">
                      <children>
-                        <Button fx:id="addButton" mnemonicParsing="false" onAction="#addPassword" prefHeight="53.0" prefWidth="126.0" text="Dodaj" />
-                        <Button fx:id="cancelButton" mnemonicParsing="false" onAction="#cancelAdding" prefHeight="53.0" prefWidth="126.0" text="Anuluj" />
+                        <Button fx:id="addButton" mnemonicParsing="false" onAction="#editPassword" prefHeight="53.0" prefWidth="126.0" text="Edytuj" />
+                        <Button fx:id="cancelButton" mnemonicParsing="false" onAction="#cancelEditing" prefHeight="53.0" prefWidth="126.0" text="Anuluj" />
                      </children>
                   </HBox>
                </children>

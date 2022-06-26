@@ -62,7 +62,6 @@ public class LoginController {
             if(result.get() == ButtonType.CANCEL){
                 isCancel = true;
             }
-            return;
         }
         else {
             try {
@@ -88,7 +87,6 @@ public class LoginController {
 
         try {
             passwordFromFile = new Password(new BufferedReader(new FileReader(fileToLoad)).readLine());
-            //            passwordFromFile.decryptPassword();
         } catch (IOException e){
             e.printStackTrace();
         }
@@ -103,6 +101,7 @@ public class LoginController {
             FXMLLoader loader = new FXMLLoader(getClass().getResource("FXML/MainPanel.fxml"));
             Parent root = loader.load();
             MainPanelController mainPanelController = loader.getController();
+
             mainPanelController.setFileFromLoginPanel(fileToLoad);
             mainPanelController.loadFileToTableView();
 

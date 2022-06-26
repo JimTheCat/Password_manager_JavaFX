@@ -32,11 +32,17 @@ public class CreateFileController {
             isSamePasswords.setText("");
             FileManager fileManager = new FileManager(fileFromAnotherController.getPath());
             Password passwordProgram = new Password(firstPassword.getText());
+            passwordProgram.encryptText();
             fileManager.createFile(passwordProgram);
             try {
                 Stage primaryStage = new Stage(StageStyle.DECORATED);
                 FXMLLoader loader = new FXMLLoader(getClass().getResource("FXML/MainPanel.fxml"));
                 Parent root = loader.load();
+                MainPanelController mainPanelController = loader.getController();
+
+                mainPanelController.setFileFromLoginPanel(fileFromAnotherController);
+                mainPanelController.setPasswordToUnlockApp(passwordProgram);
+
                 Scene scene = new Scene(root);
                 primaryStage.setTitle(nameOfFile.getText() + " - Password Manager s25256");
                 primaryStage.setScene(scene);

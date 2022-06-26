@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
+<?import javafx.scene.control.ContextMenu?>
 <?import javafx.scene.control.Menu?>
 <?import javafx.scene.control.MenuBar?>
 <?import javafx.scene.control.MenuItem?>
@@ -11,24 +12,24 @@
    <top>
       <MenuBar BorderPane.alignment="CENTER">
         <menus>
-          <Menu mnemonicParsing="false" text="File">
+          <Menu mnemonicParsing="false" text="Plik">
             <items>
-                  <MenuItem mnemonicParsing="false" text="Nowy plik" />
-                  <MenuItem fx:id="openFileMenu" mnemonicParsing="false" onAction="#openFile" text="Otwórz plik" />
-              <MenuItem mnemonicParsing="false" text="Zamknij plik" />
+              <MenuItem mnemonicParsing="false" onAction="#saveFileItem" text="Zapisz" />
+              <MenuItem mnemonicParsing="false" onAction="#closeFileItem" text="Zamknij" />
             </items>
           </Menu>
-            <Menu mnemonicParsing="false" text="Edit">
+            <Menu mnemonicParsing="false" text="Hasło">
               <items>
-                <MenuItem mnemonicParsing="false" text="Add Password" />
-                  <MenuItem mnemonicParsing="false" text="Unspecified Action" />
+                <MenuItem mnemonicParsing="false" text="Wyszukaj" />
+                  <MenuItem mnemonicParsing="false" text="Posortuj" />
               </items>
             </Menu>
-          <Menu mnemonicParsing="false" text="Help">
-            <items>
-              <MenuItem mnemonicParsing="false" text="About" />
-            </items>
-          </Menu>
+            <Menu mnemonicParsing="false" text="Kategoria">
+              <items>
+                <MenuItem mnemonicParsing="false" onAction="#addCatItem" text="Dodaj" />
+                  <MenuItem mnemonicParsing="false" onAction="#delCatItem" text="Usuń" />
+              </items>
+            </Menu>
         </menus>
       </MenuBar>
    </top>
@@ -44,6 +45,15 @@
          <columnResizePolicy>
             <TableView fx:constant="CONSTRAINED_RESIZE_POLICY" />
          </columnResizePolicy>
+         <contextMenu>
+            <ContextMenu>
+              <items>
+                  <MenuItem mnemonicParsing="false" onAction="#addPasswordItem" text="Dodaj hasło" />
+                  <MenuItem mnemonicParsing="false" onAction="#editPasswordItem" text="Edytuj hasło" />
+                  <MenuItem mnemonicParsing="false" onAction="#deletePasswordItem" text="Usuń hasło" />
+              </items>
+            </ContextMenu>
+         </contextMenu>
       </TableView>
    </center>
 </BorderPane>
