@@ -1,0 +1,81 @@
+.root{
+    -fx-background-color: "#343536";
+}
+
+.label{
+    -fx-text-fill: "white";
+}
+
+.button{
+    -fx-background-color: "#44505c";
+    -fx-text-fill: "white";
+}
+
+.table-view {
+    -fx-background-color: transparent;
+}
+
+.table-view .column-header {
+    -fx-background-color: transparent;
+}
+
+.table-view .column-header-background{
+    -fx-background-color: linear-gradient(to bottom, rgba(43, 50, 46, 0.27), rgba(194, 213, 217, 0.27) );
+}
+
+.table-view .table-cell{
+    -fx-border-color: transparent;
+    -fx-text-fill: "white";
+}
+
+.table-row-cell:odd{
+    -fx-background-color: rgba(153, 167, 167, 0.07);
+}
+
+.table-row-cell:even{
+    -fx-background-color: rgba(59, 63, 64, 0.07);
+}
+
+.table-row-cell:selected{
+    -fx-background-color: #55717d;
+}
+
+.context-menu {
+    -fx-background-color: rgba(172, 188, 188, 0.07);
+    -fx-text-fill: white;
+}
+
+.menu-item .label {
+    -fx-text-fill: white;
+}
+
+.menu-item:focused .label {
+    -fx-text-fill: white;
+}
+
+.menu-bar {
+    -fx-background-color: rgba(172, 188, 188, 0.07);
+    -fx-text-fill: white;
+}
+
+.password-field {
+    -fx-background-color: rgba(218, 234, 234, 0.07);
+    -fx-text-fill: white;
+
+}
+
+.text-field {
+    -fx-background-color: rgba(218, 234, 234, 0.07);
+    -fx-text-fill: white;
+
+}
+.combo-box-base{
+    -fx-background-color: rgba(255, 255, 255, 0.36);
+    -fx-text-fill: white;
+}
+
+.combo-box-popup .list-view{
+    -fx-background-color: rgba(218, 234, 234, 0.07);
+    /*-fx-text-fill: white;*/
+
+}

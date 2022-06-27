@@ -73,6 +73,8 @@ public class LoginController {
                 createFileController.setFile(fileToLoad);
 
                 Scene scene = new Scene(root);
+                String css = this.getClass().getResource("CSS/darkmode.css").toExternalForm();
+                scene.getStylesheets().add(css);
                 createFileStage.setTitle("Tworze nową bazę s25256");
                 createFileStage.setScene(scene);
                 createFileStage.show();
@@ -106,6 +108,8 @@ public class LoginController {
             mainPanelController.loadFileToTableView();
 
             Scene scene = new Scene(root);
+            String css = this.getClass().getResource("CSS/darkmode.css").toExternalForm();
+            scene.getStylesheets().add(css);
             primaryStage.setTitle(nameOfFile + " - Password Manager s25256");
             primaryStage.setScene(scene);
             primaryStage.show();

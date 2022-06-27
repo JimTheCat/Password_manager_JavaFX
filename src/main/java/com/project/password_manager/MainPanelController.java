@@ -56,7 +56,6 @@ public class MainPanelController {
 
     public void setFileFromLoginPanel(File fileFromLogin){
         fileFromLoginPanel = fileFromLogin;
-        System.out.println(fileFromLogin.getName());
     }
 
     protected void loadFileToTableView() {
@@ -109,6 +108,8 @@ public class MainPanelController {
                 controller.setComboBox(comboBoxContent);
 
                 Stage stage = new Stage(StageStyle.DECORATED);
+                String css = this.getClass().getResource("CSS/darkmode.css").toExternalForm();
+                parent.getStylesheets().add(css);
                 stage.setTitle("Dodawanie hasła");
                 stage.setScene(new Scene(parent));
                 stage.showAndWait();
@@ -123,56 +124,59 @@ public class MainPanelController {
     }
 
     public void editPasswordItem(ActionEvent event) {
-        Password selectedForEdit;
-        System.out.println(table.getSelectionModel().getSelectedItem().getPassword());
         if (table.getSelectionModel().getSelectedItem() == null){
-            //tutaj alert odnośnie błędu
-            return;
+            Alert alert = new Alert(Alert.AlertType.ERROR);
+            alert.setTitle("Błąd");
+            alert.setHeaderText("Sprawdz czy wybrałeś hasło do edycji!");
+            alert.showAndWait();
         }
+        else {
+            try {
+                FXMLLoader loader = new FXMLLoader(getClass().getResource("FXML/EditRecord.fxml"));
+                Parent parent = loader.load();
 
-        try{
-            FXMLLoader loader = new FXMLLoader(getClass().getResource("FXML/EditRecord.fxml"));
-            Parent parent = loader.load();
+                EditRecordController controller = loader.getController();
+                controller.setComboBox(comboBoxContent);
+                controller.inflateUI(table.getSelectionModel().getSelectedItem());
 
-            EditRecordController controller = loader.getController();
-            controller.setComboBox(comboBoxContent);
-            controller.inflateUI(table.getSelectionModel().getSelectedItem());
+                Stage stage = new Stage(StageStyle.DECORATED);
+                String css = this.getClass().getResource("CSS/darkmode.css").toExternalForm();
+                parent.getStylesheets().add(css);
+                stage.setTitle("Edytuj hasło");
+                stage.setScene(new Scene(parent));
+                stage.showAndWait();
 
-            Stage stage = new Stage(StageStyle.DECORATED);
-            stage.setTitle("Edytuj hasło");
-            stage.setScene(new Scene(parent));
-            stage.showAndWait();
-//
-//            selectedForEdit = controller.returnEditedPassword();
-//            table.getSelectionModel().;
-            table.refresh();
+                table.refresh();
 
-        } catch (IOException e){
-            e.printStackTrace();
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
         }
     }
 
     public void deletePasswordItem(ActionEvent event) {
 
         Password selectedForDelete = table.getSelectionModel().getSelectedItem();
-        System.out.println(selectedForDelete.getPassword());
+//        System.out.println(selectedForDelete.getPassword());
         if (selectedForDelete == null){
-            //tutaj alert odnośnie błędu
-            return;
-        }
+            Alert alert = new Alert(Alert.AlertType.ERROR);
+            alert.setTitle("Błąd");
+            alert.setHeaderText("Sprawdz czy wybrałeś hasło do usunięcia!");
+            alert.showAndWait();
+        }else {
 
-        Alert alert = new Alert(Alert.AlertType.CONFIRMATION);
-        alert.setTitle("Usunięcie hasła");
-        alert.setHeaderText("Czy na pewno chcesz usunąć hasło?");
-        Optional<ButtonType> result = alert.showAndWait();
+            Alert alert = new Alert(Alert.AlertType.CONFIRMATION);
+            alert.setTitle("Usunięcie hasła");
+            alert.setHeaderText("Czy na pewno chcesz usunąć hasło?");
+            Optional<ButtonType> result = alert.showAndWait();
 
-        if (result.isEmpty() || result.get() != ButtonType.OK){
-            if(result.get() == ButtonType.CANCEL) return;
-        }
-        else {
-            table.getItems().removeAll(
-                    table.getSelectionModel().getSelectedItems()
-            );
+            if (result.isEmpty() || result.get() != ButtonType.OK) {
+                if (result.get() == ButtonType.CANCEL) return;
+            } else {
+                table.getItems().removeAll(
+                        table.getSelectionModel().getSelectedItems()
+                );
+            }
         }
     }
 
@@ -186,6 +190,8 @@ public class MainPanelController {
             controller.getNameOfCategories(comboBoxContent);
 
             Stage stage = new Stage(StageStyle.DECORATED);
+            String css = this.getClass().getResource("CSS/darkmode.css").toExternalForm();
+            parent.getStylesheets().add(css);
             stage.setTitle("Dodaj kategorie");
             stage.setScene(new Scene(parent));
             stage.showAndWait();
@@ -207,6 +213,8 @@ public class MainPanelController {
             controller.getListOfPasswords(list);
 
             Stage stage = new Stage(StageStyle.DECORATED);
+            String css = this.getClass().getResource("CSS/darkmode.css").toExternalForm();
+            parent.getStylesheets().add(css);
             stage.setTitle("Usuń kategorie");
             stage.setScene(new Scene(parent));
             stage.showAndWait();
@@ -237,7 +245,10 @@ public class MainPanelController {
                 Stage primaryStage = new Stage(StageStyle.DECORATED);
                 FXMLLoader loader = new FXMLLoader(getClass().getResource("FXML/Login.fxml"));
                 Parent root = loader.load();
+
                 Scene scene = new Scene(root);
+                String css = this.getClass().getResource("CSS/darkmode.css").toExternalForm();
+                scene.getStylesheets().add(css);
                 primaryStage.setTitle("Password Manager s25256");
                 primaryStage.setScene(scene);
                 primaryStage.show();
